@@ -1,0 +1,108 @@
+	<!--Requirement jQuery-->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!--Load Script and Stylesheet -->
+	<script type="text/javascript" src="assets/dtp/jquery.simple-dtpicker.js"></script>
+	<link type="text/css" href="assets/dtp/jquery.simple-dtpicker.css" rel="stylesheet" />
+<style type="text/css">
+	.amChartsPeriodSelector.amcharts-period-selector-div{
+		color: white;
+	}
+	.amChartsPeriodSelector.amcharts-period-selector-div input{
+		color: black;
+	}
+	.amcharts-start-date-input, .amcharts-end-date-input{
+		/*visibility: hidden;*/
+	}
+	#fromTime, #toTime{
+		/*visibility: hidden;*/
+		display: none;
+		position: absolute;
+		width: 150px;
+		text-align: center;
+	}
+	.datepicker_header .icon-home, .datepicker_header .icon-close{
+		width: 32px !important;
+		height: 32px !important;
+	}
+</style>
+<!-- <div class="col-md-12" ba-panel ng-controller="techanChartCtrl"> -->
+	<!-- <input type="text" id="dtpickerEdit" name=""> -->
+	<div ng-controller="techanChartCtrl">
+		<div id="techanChart" class="admin-chart">
+		</div>
+		<!-- <input type="text" name="" id="datetime" /> -->
+		<div style="position: absolute; top: 5px; left: 60px;">
+			<img src="assets/img/app/my-app-logo.png" style="width: 50px;cursor: pointer;" ng-click="predictionShow()">
+		</div>
+		<input type="text" id="fromTime">
+		<input type="text" id="toTime">
+	</div>
+<!-- </div> -->
+<script type="text/javascript">
+	var interval;
+	$("#fromTime").appendDtpicker({
+		closeOnSelected: true,
+		close: function(dateTime){
+			console.log("onClose");
+		}
+	});
+	$("#toTime").appendDtpicker({closeOnSelected: true});
+	function eventMatching(){
+		$("#fromTime").val($(".amcharts-start-date-input").val());
+		$("#toTime").val($(".amcharts-end-date-input").val());
+		$(".amcharts-start-date-input").on('click', function(){
+			console.log('start changed');
+			$("#fromTime").show();
+		});
+		$(".amcharts-end-date-input").on('click', function(){
+			// console.log('start changed');
+			$("#toTime").show();
+		});
+		$("#fromTime").offset({ top: $("#techanChart").height() - 10, left: 52});
+		$("#toTime").offset({ top: $("#techanChart").height() - 10, left: 220});
+		// $("#fromTime").css('display','block');
+		// $("#toTime").css('display','block');
+	}
+	$("#fromTime").on('close', function(){
+		console.log('closed');
+	});
+	$("#fromTime").on('hide', function(){
+		console.log('hide');
+	});
+	$("#fromTime").on('onClose', function(){
+		console.log('onClose');
+	});
+	$("#fromTime").on('onHide', function(){
+		console.log('onHide');
+	});
+	$('#fromTime').change(function() {
+		setTimeout(function(){
+			if( $(".datepicker").eq(0).is(':visible') ){
+				return;
+			}
+			$(".amcharts-start-date-input").val($("#fromTime").val());
+			$("#fromTime").hide();
+			$(".amcharts-start-date-input").focus();
+		}, 500);
+	});
+	$('#toTime').change(function() {
+		setTimeout(function(){
+			if( $(".datepicker").eq(1).is(':visible') ){
+				return;
+			}
+			$(".amcharts-end-date-input").val($("#toTime").val());
+			$("#toTime").hide();
+			$(".amcharts-end-date-input").focus();
+		}, 500);
+	});
+
+	interval = setInterval(function(){
+		console.log('interval');
+		var dateinput = $(".amcharts-start-date-input");
+		if( dateinput.length != 0){
+			console.log('deteted.');
+			eventMatching();
+			clearInterval(interval);
+		}
+	}, 1000);
+</script>

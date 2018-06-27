@@ -1,0 +1,64 @@
+<div class="row market-table-class">
+  <div class="market-header col-xs-12">
+    <label class="col-xs-4">MARKETS</label>
+    <div class="col-xs-8">
+      <div style="font-size: 1.5em; background-color: white; border-radius: 5px; padding: 5px;"><span style="color: rgba(180, 218, 215);"><i class="fa fa-search"></i></span><input type="text" id="filterBox" name="" style="height: 1.2em;margin-left: 5px; width: calc(100% - 25px); background: none; border:none;" placeholder="Filter" ng-model="strFilter"></div>
+    </div>
+  </div>
+  <div class="market-table-body">
+    <div class="btn-group">
+      <button class="btn market-currency-type {{currency_type == 0 ? 'active' : ''}}" ng-click="setCurrencyType(0)">BTC</button>
+      <button class="btn market-currency-type {{currency_type == 1 ? 'active' : ''}}" ng-click="setCurrencyType(1)">ETH</button>
+      <button class="btn market-currency-type {{currency_type == 2 ? 'active' : ''}}" ng-click="setCurrencyType(2)">XMR</button>
+      <button class="btn market-currency-type {{currency_type == 3 ? 'active' : ''}}" ng-click="setCurrencyType(3)">USDT</button>
+    </div>
+      <!-- <i class="fa fa-gear" aria-hidden="true"></i> -->
+  </div>
+  <div ba-panel-class="with-scroll" style="height: 410px; overflow: auto;border-top: 3px solid #ffaa15;">
+    <table class="fixed_headers">
+      <thead fix-head>
+        <tr>
+          <!-- <th><i class="fa fa-star" aria-hidden="true"></i></th> -->
+          <th>Coin</th>
+          <th>Price</th>
+          <th>Volume</th>
+          <th>Change</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="btcRecord in CurrencyBTC | filter:{coin : strFilter}" ng-if="currency_type==0">
+          <td ng-click="onBTCClick(btcRecord)" style="cursor: pointer;">{{btcRecord.coin}}</td>
+          <td>{{btcRecord.price}}</td>
+          <td>{{btcRecord.volume}}</td>
+          <td ng-class="{plusVal:btcRecord.change > 0, minusVal:btcRecord.change < 0}">{{btcRecord.change}}</td>
+          <td>{{btcRecord.name}}</td>
+        </tr>
+
+        <tr ng-repeat="ethRecord in CurrencyETH | filter:{coin : strFilter}" ng-if="currency_type==1">
+          <td ng-click="onETHClick(ethRecord)" style="cursor: pointer;">{{ethRecord.coin}}</td>
+          <td>{{ethRecord.price}}</td>
+          <td>{{ethRecord.volume}}</td>
+          <td ng-class="{plusVal:ethRecord.change > 0, minusVal:ethRecord.change < 0}">{{ethRecord.change}}</td>
+          <td>{{ethRecord.name}}</td>
+        </tr>
+
+        <tr ng-repeat="xmrRecord in CurrencyXMR | filter:{coin : strFilter}" ng-if="currency_type==2">
+          <td ng-click="onXMRClick(xmrRecord)" style="cursor: pointer;">{{xmrRecord.coin}}</td>
+          <td>{{xmrRecord.price}}</td>
+          <td>{{xmrRecord.volume}}</td>
+          <td ng-class="{plusVal:xmrRecord.change > 0, minusVal:xmrRecord.change < 0}">{{xmrRecord.change}}</td>
+          <td>{{xmrRecord.name}}</td>
+        </tr>
+
+        <tr ng-repeat="usdtRecord in CurrencyUSDT | filter:{coin : strFilter}" ng-if="currency_type==3">
+          <td ng-click="onUSDTClick(usdtRecord)" style="cursor: pointer;">{{usdtRecord.coin}}</td>
+          <td>{{usdtRecord.price}}</td>
+          <td>{{usdtRecord.volume}}</td>
+          <td ng-class="{plusVal:usdtRecord.change > 0, minusVal:usdtRecord.change < 0}">{{usdtRecord.change}}</td>
+          <td>{{usdtRecord.name}}</td>
+        </tr>
+      </tbody>
+    </table> 
+  </div>
+</div>

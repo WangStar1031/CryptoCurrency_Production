@@ -1,0 +1,76 @@
+<style>
+#form { font-size: small; position: relative; display: none;}
+select.form-control.selectpicker{ display: block!important;}
+</style>
+
+<div class="form-group col-lg-3" ng-controller="WordCloudCtrl">
+    <select class="form-control selectpicker" selectpicker title="News Word"
+            ng-model="standardSelected"
+            ng-options="item as item.label for item in standardSelectItems"
+            ng-change="wordKindChanged()">
+    </select>
+</div>
+<div id="vis" ng-controller="WordCloudCtrl"></div>
+<!-- angular-d3-word-cloud -->
+<form id="form">
+  <p id="status"></p>
+  <div>
+    <div id="presets"></div>
+    <div id="custom-area">
+      <p><label for="text">Paste your text below!</label>
+      <p><textarea id="text" onchange="changed()">
+      </textarea>
+      <button id="go" type="submit">Go!</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <div>
+    <p><label for="max">Number of words:</label> <input type="number" value="250" min="1" id="max">
+    <p><label for="per-line"><input type="checkbox" id="per-line"> One word per line</label>
+    <p><label>Download:</label>
+      <button id="download-svg">SVG</button>
+  </div>
+
+  <div>
+    <p><label>Spiral:</label>
+      <label for="archimedean"><input type="radio" name="spiral" id="archimedean" value="archimedean" checked="checked"> Archimedean</label>
+      <label for="rectangular"><input type="radio" name="spiral" id="rectangular" value="rectangular"> Rectangular</label>
+    <p><label for="scale">Scale:</label>
+      <label for="scale-log"><input type="radio" name="scale" id="scale-log" value="log"> log n</label>
+      <label for="scale-sqrt"><input type="radio" name="scale" id="scale-sqrt" value="sqrt"> √n</label>
+      <label for="scale-linear"><input type="radio" name="scale" id="scale-linear" value="linear" checked="checked"> n</label>
+    <p><label for="font">Font:</label> <input type="text" id="font" value="Impact">
+  </div>
+
+  <div id="angles">
+    <p><input type="number" id="angle-count" value="5" min="1"> <label for="angle-count">orientations</label>
+      <label for="angle-from">from</label> <input type="number" id="angle-from" value="-60" min="-90" max="90"> °
+      <label for="angle-to">to</label> <input type="number" id="angle-to" value="60" min="-90" max="90"> °
+  </div>
+  <hr style="clear: both">
+</form>
+
+<script src="./assets/js/myD3.min.js"></script>
+<script src="./assets/js/myWordCloud.min.js"></script>
+<script type="text/javascript">
+  // $.ajax({
+  //   method: 'GET',
+  //   data: {},
+  //   url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudNewsWord/2018-01-01T00:00:42/2018-01-10T00:00:42",
+  //   dataType: 'json',
+  //   success: function(data){
+  //     var strBuf = "";
+  //     console.log(data.length);
+  //     for( var i = 0; i < data.length; i++){
+  //       for( var j = 0; j < data[i].count; j++){
+  //         strBuf += data[i].word + " ";
+  //       }
+  //     }
+  //     // console.log(strBuf);
+  //     parseText(strBuf);
+  //   }
+  // });
+  // var isWordTrue = false;
+</script>

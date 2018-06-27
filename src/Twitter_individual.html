@@ -1,0 +1,417 @@
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+<link href="assets/js/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="assets/js/timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="assets/css/Intelligence.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/Twitter.css" rel="stylesheet">
+<link href="assets/css/Twitter2.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="assets/js/jquery-ui/smoothness/jquery-ui.min.js" type="text/javascript"></script>
+<script src="assets/js/cookieManager.js" type="text/javascript"></script>
+<script src="assets/js/tweet/widgets.js" type="text/javascript"></script>
+
+<body class="">
+<div class="page-container row-fluid container-fluid">
+<section id="main-content" class="">
+<section class="wrapper main-wrapper row" style=''>
+
+<script type="text/javascript">
+    var ScreenNameNoChi = getCookie("IndividualScreenName");
+    var ScreenName = "@" + ScreenNameNoChi;
+</script>
+<style>
+	#main-content { margin-left: 0px ! important; display: block; }
+	#tweet { width: 400px !important; }
+	#tweet iframe { border: none !important; box-shadow: none !important; }
+	.main-wrapper { margin-top: 0px !important}
+	.EmbeddedTweet-tweet { padding: 20px 20px 11.6px 20px; border-radius: 5px; border: 1px solid #ddd;}
+	.sharpCls{ color: #cc0000; }
+	.avatars{ margin: auto; margin-top: 20px; position: relative;}
+	p{ text-align: center; }
+	.fromAvatar{ width: 100px; z-index: 1;}
+	.fromAvatar{ float: left; }
+	table{ width: 100%; }
+	body{ background-color: white; }
+	.leftTd{text-align: left; width: 25%;padding: 15px !important; vertical-align: middle !important;}
+	.rightTd{text-align: right; width: 25%;}
+	.centerTd{ border: 1px solid #eee; width: 49%;}
+	table tr th{ text-align: center ! important; background-color: #e8e8e8; padding-top: 20px; padding-bottom: 20px; color: black;}
+	table tr td{ padding: 15px;}
+	.smallImg{ width: 46px; height: 46px; float: left; border-radius: 50%;}
+	.smallName{ line-height: 50px; font-weight: bold; padding-left: 70px; color: black;}
+	.smallName:hover{ color: #c00; }
+	.leftJustify, .rightJustify{ width: 70%; }
+	.leftJustify{ float: left; }
+	.rightJustify{ float: right; }
+</style>
+
+<body class="">
+
+
+<div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ProfileCanopy-header">
+                <div class="ProfileCanopy-headerBg">
+                    <img alt="" src="">
+                </div>
+                <div class="ProfileCanopy-avatar">
+                    <div class="ProfileAvatar">
+                        <a class="ProfileAvatar-container u-block js-tooltip profile-picture"
+                           href="" title="" data-resolved-url-large="" data-url="" target="_blank" rel="noopener">
+                            <img class="ProfileAvatar-image" src="" alt="">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="ProfileCanopy-navBar u-boxShadow">
+                <div class="">
+                    <div class="Grid">
+                        <div class="Grid-cell u-size1of3 u-lg-size1of4">
+                            <div class="ProfileCanopy-card" role="presentation">
+                                <div class="ProfileCardMini">
+                                    <a class="ProfileCardMini-avatar profile-picture js-tooltip" href="" title="" data-resolved-url-large="" data-url="" target="_blank" rel="noopener">
+                                        <img class="ProfileCardMini-avatarImage" alt="" src="" >
+                                    </a>
+                                    <div class="ProfileCardMini-details">
+                                        <div class="ProfileNameTruncated account-group">
+                                            <div class="u-textTruncate u-inlineBlock">
+                                                <a class="fullname ProfileNameTruncated-link u-textInheritColor js-nav" href=""  data-aria-label-part>
+                                                </a></div><span class="UserBadges"></span>
+                                        </div>
+                                        <div class="ProfileCardMini-screenname">
+                                            <a href="" class="ProfileCardMini-screennameLink u-linkComplex js-nav u-dir" dir="ltr">
+                                                <span class="username u-dir" dir="ltr">@<b class="u-linkComplex-target"></b></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="Grid-cell u-size2of3 u-lg-size3of4">
+                            <div class="ProfileCanopy-nav">
+                                <div class="ProfileNav" role="navigation" data-user-id="13727692">
+                                    <ul class="ProfileNav-list">
+                                        <li class="ProfileNav-item ProfileNav-item--tweets is-active">
+                                            <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor" title="" data-nav="tweets" tabindex=0 >
+                                                <span class="ProfileNav-label" aria-hidden="true">Tweet</span>
+                                                <span class="ProfileNav-value"  data-count="" data-is-compact="true">
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li class="ProfileNav-item ProfileNav-item--following">
+                                            <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor" title="" data-nav="following" href="">
+                                                <span class="ProfileNav-label" aria-hidden="true">Following</span>
+                                                <span class="u-hiddenVisually">Following</span>
+                                                <span class="ProfileNav-value" data-count="" data-is-compact="false"></span>
+                                            </a>
+                                        </li>
+                                        <li class="ProfileNav-item ProfileNav-item--followers">
+                                            <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor" title="" data-nav="followers" href="">
+                                                <span class="ProfileNav-label" aria-hidden="true">Follower</span>
+                                                <span class="u-hiddenVisually">Follower</span>
+                                                <span class="ProfileNav-value" data-count="" data-is-compact="false"></span>
+                                            </a>
+                                        </li>
+                                        <li class="ProfileNav-item ProfileNav-item--favorites" data-more-item=".ProfileNav-dropdownItem--favorites">
+                                            <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor" title="" data-nav="favorites" href="">
+                                                <span class="ProfileNav-label" aria-hidden="true">Like</span>
+                                                <span class="u-hiddenVisually">Like</span>
+                                                <span class="ProfileNav-value" data-count="" data-is-compact="true"></span>
+                                            </a>
+                                        </li>
+                                        <li class="ProfileNav-item ProfileNav-item--lists" data-more-item=".ProfileNav-dropdownItem--lists">
+                                            <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip  js-nav u-textUserColor" title="" data-nav="all_lists" href="">
+                                                <span class="ProfileNav-label" aria-hidden="true">Lists</span>
+                                                <span class="u-hiddenVisually">Lists</span>
+                                                <span class="ProfileNav-value" data-is-compact="false"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="ProfileHeaderCard">
+                <h1 class="ProfileHeaderCard-name">
+                    <a href="" class="ProfileHeaderCard-nameLink u-textInheritColor js-nav"></a>
+                </h1>
+
+                <h2 class="ProfileHeaderCard-screenname u-inlineBlock u-dir" dir="ltr">
+                    <a class="ProfileHeaderCard-screennameLink u-linkComplex js-nav" href="">
+                        <span class="username u-dir" dir="ltr">@<b class="u-linkComplex-target"></b></span>
+                    </a>
+                </h2>
+
+                <p class="ProfileHeaderCard-bio u-dir" dir="ltr"></p>
+
+                <div class="ProfileHeaderCard-location ">
+                    <span class="Icon Icon--geo Icon--medium"></span>
+                    <span class="ProfileHeaderCard-locationText u-dir" dir="ltr">
+                    </span>
+                </div>
+
+
+                <div class="ProfileHeaderCard-joinDate">
+                    <span class="Icon Icon--calendar Icon--medium"></span>
+                    <span class="ProfileHeaderCard-joinDateText js-tooltip u-dir" dir="ltr" title="">Signed since <!-- <?php echo date_format(date_create($Testata["DataRegistrazioneUser"]), 'F Y') ?> --></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10">
+            <br>
+            <table class="table table-striped dt-responsive display" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th><!-- Keyword<br> -->Tweet Date<br>Language</th>
+                        <th>Tweet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</section>
+</section>
+<div class="chatapi-windows "></div>
+</div>
+
+<script type="text/javascript">
+    var retFromService = [];
+    var screenNameData = {};
+    $.ajax({
+        method: 'GET',
+        data: {},
+        url: "http://www.icaroai.com/icaroai/rest/charting/getFromTweet/" + ScreenNameNoChi,
+        dataType: 'json',
+        success: function(data){
+            retFromService = data;
+            processReturnValue();
+        }
+    });
+    $.ajax({
+        method: 'GET',
+        data: {},
+        url: "http://www.icaroai.com/icaroai/rest/charting/getScreenNameData/" + ScreenNameNoChi,
+        dataType: 'json',
+        success: function(data){
+            screenNameData = data[0];
+            processScreenNameData();
+        }
+    });
+    $(document).ready(function(){
+        $(".ProfileAvatar a").attr("href", "https://twitter.com/" + ScreenNameNoChi);
+        $(".ProfileAvatar a").attr("title", ScreenNameNoChi);
+        $(".ProfileAvatar a").attr("data-resolved-url-large", "https://twitter.com/" + ScreenNameNoChi + "/profile_image?size=original");
+        $(".ProfileAvatar a").attr("data-url", "https://twitter.com/" + ScreenNameNoChi + "/profile_image?size=original");
+        $(".ProfileAvatar a img").attr("src", "https://twitter.com/" + ScreenNameNoChi + "/profile_image?size=original");
+        $(".ProfileAvatar a img").attr("alt", ScreenNameNoChi);
+        $(".ProfileCardMini a.ProfileCardMini-avatar").attr("href", "https://twitter.com/" + ScreenNameNoChi);
+        $(".ProfileCardMini a.ProfileCardMini-avatar").attr("title", ScreenNameNoChi);
+        $(".ProfileCardMini a.ProfileCardMini-avatar").attr("data-resolved-url-large", "https://twitter.com/" + ScreenNameNoChi + "/profile_image?size=normal");
+        $(".ProfileCardMini a.ProfileCardMini-avatar").attr("data-url", "https://twitter.com/" + ScreenNameNoChi + "/profile_image?size=normal");
+        $(".ProfileCardMini-avatarImage").attr("alt", ScreenNameNoChi);
+        $(".ProfileCardMini-avatarImage").attr("src", "https://twitter.com/" + ScreenNameNoChi + "/profile_image?size=normal");
+        $(".ProfileNameTruncated a").attr("href", "https://twitter.com/" + ScreenNameNoChi);
+        $(".ProfileNameTruncated a").html(ScreenNameNoChi);
+        $(".ProfileCardMini-screenname a").attr("href", "https://twitter.com/" + ScreenNameNoChi);
+        $(".ProfileCardMini-screenname b").html( ScreenNameNoChi);
+        $(".ProfileNav ul .ProfileNav-item--following a").attr("href", "https://twitter.com/" + ScreenNameNoChi + "/following");
+        $(".ProfileNav ul .ProfileNav-item--followers a").attr("href", "https://twitter.com/"+ScreenNameNoChi+"/followers");
+        $(".ProfileNav ul .ProfileNav-item--favorites a").attr("href", "https://twitter.com/"+ScreenNameNoChi+"/likes");
+        $(".ProfileNav ul .ProfileNav-item--lists a").attr("href", "https://twitter.com/"+ScreenNameNoChi+"/lists");
+        $(".ProfileHeaderCard .ProfileHeaderCard-name a").attr("href",  "https://twitter.com/" + ScreenNameNoChi);
+        $(".ProfileHeaderCard .ProfileHeaderCard-screenname a").attr("href",  "https://twitter.com/" + ScreenNameNoChi);
+        $(".ProfileHeaderCard .ProfileHeaderCard-screenname a .username b").html(ScreenNameNoChi);
+    });
+    function processReturnValue(){
+        var strHtml = "";
+        for( var i = 0; i < retFromService.length; i++){
+            var IdTweet = retFromService[i].idTweet;
+            // var Keyword = "";//retFromService[i].
+            var TweetTimeStampStringa = retFromService[i].tweetTimeStamp;
+            var TweetText = retFromService[i].tweetText;
+            var ScreenName = retFromService[i].screenName;
+            var strSubHtml = "";
+            strSubHtml += "<tr>"
+                strSubHtml += "<td class='leftTd'>";
+                    // strSubHtml += Keyword + "<br/>" + TweetTimeStampStringa + "<br/>" + IdTweet;
+                    strSubHtml += TweetTimeStampStringa + "<br/>" + IdTweet;
+                strSubHtml += "</td>";
+                strSubHtml += "<td class='centerTd'>";
+                    strSubHtml += "<div class='tweet' id='" + IdTweet + "'>";
+                        strSubHtml += "<div hidden><h4>Tweet not available on line.<h4><br/><h5>Stored Test:</h5>";
+                        strSubHtml += "<div class='time'>" + TweetTimeStampStringa + ".</div>";
+                        strSubHtml += "<label style='background-color: white; border: solid; border-color: black; border-radius: 5px; border-width: 1px; padding: 5px;'>" + TweetText + "</label>";
+                        strSubHtml += "</div>";
+                    strSubHtml += "</div>";
+                strSubHtml += "</td>";
+            strSubHtml += "</tr>";
+            strHtml += strSubHtml;
+        }
+        $(".table-striped tbody").html(strHtml);
+        processTweetContents();
+    }
+    function processScreenNameData(){
+        $(".ProfileCanopy-headerBg img").attr("src", screenNameData.profileBannerURL);
+        $(".ProfileNav ul .ProfileNav-item--tweets a").attr("title", screenNameData.statusesCount + " Tweet");
+        $(".ProfileNav ul .ProfileNav-item--tweets a .ProfileNav-value").attr("data-count", screenNameData.statusesCount);
+        $(".ProfileNav ul .ProfileNav-item--tweets a .ProfileNav-value").html( screenNameData.statusesCount);
+
+        $(".ProfileNav ul .ProfileNav-item--following a").attr("title", screenNameData.friendsCount + " following");
+        $(".ProfileNav ul .ProfileNav-item--following a .ProfileNav-value").attr("data-count", screenNameData.friendsCount);
+        $(".ProfileNav ul .ProfileNav-item--following a .ProfileNav-value").html( screenNameData.friendsCount);
+
+        $(".ProfileNav ul .ProfileNav-item--followers a").attr("title", screenNameData.followersCount + " follower");
+        $(".ProfileNav ul .ProfileNav-item--followers a .ProfileNav-value").attr("data-count", screenNameData.followersCount);
+        $(".ProfileNav ul .ProfileNav-item--followers a .ProfileNav-value").html(screenNameData.followersCount);
+
+        $(".ProfileNav ul .ProfileNav-item--favorites a").attr("title", screenNameData.favouritesCount + " Like");
+        $(".ProfileNav ul .ProfileNav-item--favorites a .ProfileNav-value").attr("data-count", screenNameData.favouritesCount);
+        $(".ProfileNav ul .ProfileNav-item--favorites a .ProfileNav-value").html(screenNameData.favouritesCount);
+
+        $(".ProfileNav ul .ProfileNav-item--lists a").attr("title", screenNameData.listedCount + " lists");
+        $(".ProfileNav ul .ProfileNav-item--lists a .ProfileNav-value").attr("data-count", screenNameData.listedCount);
+        $(".ProfileNav ul .ProfileNav-item--lists a .ProfileNav-value").html(screenNameData.listedCount);
+        $(".ProfileHeaderCard .ProfileHeaderCard-name a").html(screenNameData.name);
+        $(".ProfileHeaderCard .ProfileHeaderCard-bio").html(screenNameData.description);
+        $(".ProfileHeaderCard .ProfileHeaderCard-location .ProfileHeaderCard-locationText").html(screenNameData.location);
+        $(".ProfileHeaderCard .ProfileHeaderCard-joinDate .ProfileHeaderCard-joinDateText").html("Signed since " + screenNameData.dataRegistrazioneUser);
+    }
+</script>
+
+
+<script>
+	var strAlphaNumber = 'abcdefghijklmnopqrstuvwxyz_1234567890';
+	var arrMonthes = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	function getScreenName( _strContents){
+		// console.log( _strContents);
+		var nStartPos = _strContents.indexOf('@');
+		var strName = '';
+		for( var i = 0; i < _strContents.length; i++){
+			var strMid = _strContents.substring( i, 1+i);
+			// console.log("strMid : " + strMid);
+			if( strAlphaNumber.indexOf( strMid.toLowerCase() ) == -1){
+				return strName;
+			}
+			strName += strMid;
+		}
+		return '';
+	}
+	function parseTimeStamp( _strTime){
+		var arrDateTime = _strTime.split(" ");
+		var _date = arrDateTime[0];
+		var _time = arrDateTime[1];
+		var arrDate = _date.split("-");
+		var arrTime = _time.split(":");
+		var strTime = ( arrTime[0] * 1 >= 12 ? arrTime[0] * 1 - 12 : arrTime[0]) + ':' + arrTime[1] + ( arrTime[0] * 1 >= 12 ? 'PM' : 'AM');
+		var strDate = arrMonthes[ arrDate[1] * 1] + ' ' + arrDate[2] + ', ' + arrDate[0];
+		return strTime + ' - ' + strDate;
+	}
+	function parseTweetContents( _strContents, _strTime){
+		var nStartPos = _strContents.indexOf('@');
+		var strName = getScreenName( _strContents.substring(nStartPos + 1));
+		var strTweetContents = _strContents.substring( nStartPos + strName.length + 2);
+		// strTweetContents = strTweetContents.split('@').join('');//.replaceAll( '@', '');
+		var strHtml = "<div style=' width: 500px; margin-right:16px;'><div class='EmbeddedTweet-tweet'><div class='row col-lg-12'><a style='text-decoration: none;' target='_blank' href='https://twitter.com/"+strName+"'><img class='smallImg' src='https://twitter.com/" + strName + "/profile_image?size=original'><div class='smallName'>" + strName + "</div></a></div><div class='row col-lg-12'>" + strTweetContents + "</div><div class=Tweet-metadata dateline>"+parseTimeStamp(_strTime)+"</div></div><div>";
+		return strHtml;
+	}
+    function processTweetContents(){
+        var tweets = jQuery(".tweet");
+        jQuery(tweets).each(function (t, tweet) {
+
+            var id = jQuery(this).attr('id');
+
+
+            twttr.widgets.createTweet(
+                    id, tweet,
+                    {
+                        conversation: 'none', // or all
+                        cards: 'hidden', // or visible 
+                        linkColor: '#cc0000', // default is blue
+                        theme: 'light'    // or dark
+                    }).then(function (result) {
+                if (result === undefined) {
+                    //tweet.find("label[for =oldtweet]").removeAttr('hidden');
+                    tweet.firstChild.hidden = false;
+                        // console.log("undefined");
+                        // tweet.find("label[for =oldtweet]").removeAttr('hidden');
+                        tweet.firstChild.hidden = false;
+                        // console.log(tweet);
+                        var strContents = $("#"+id).find("label").eq(0).html();
+                        var strTime = $("#"+id).find(".time").html();
+                        // console.log(strContents);
+                        var strHtml = parseTweetContents( strContents, strTime);
+                        // console.log(strHtml);
+                        $("#"+id).html(strHtml);
+                }
+            });
+            ;
+        });
+    }
+    function AddToSet(id, txtTweet, Lingua)
+    {
+        var W = $("#W_" + id).val();
+
+        var self = this;
+
+
+
+        $.ajax({
+            url: '../ajax/data_Retraining_Management.php?action=insert',
+            type: 'POST',
+            dataType: "html",
+            data: {
+                //tablename: self.editableGrid.name,
+                CodiceLingua: Lingua,
+                TipoSet: 'I',
+                TipoRiga: 'T',
+                Peso: parseInt(W),
+                Tweet: txtTweet
+            },
+            success: function (response)
+            {
+                if (response === "ok") {
+                    alert('Tweet added to Training Set.');
+                } else
+                    alert("error insert" + response);
+            },
+            error: function (XMLHttpRequest, textStatus, exception) {
+                alert("Ajax failure\n");
+            },
+            async: true
+        });
+    }
+
+    function showAddForm() {
+        if ($("#addform").is(':visible'))
+            $("#addform").hide();
+        else
+        {
+            $("#addform").show();
+        }
+    }
+
+</script>
+
+</body>

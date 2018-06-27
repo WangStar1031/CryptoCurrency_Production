@@ -1,0 +1,245 @@
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+<link href="assets/js/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="assets/js/timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="assets/css/Intelligence.css" rel="stylesheet" type="text/css" media="screen"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body class="">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="assets/js/jquery-ui/smoothness/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="assets/js/cookieManager.js" type="text/javascript"></script>
+
+
+<body class="">
+
+<style type="text/css">
+	.avatars{ margin: auto; margin-top: 20px; position: relative;}
+	img{ width: 100px; height: 100px; border-radius: 50%; border: 3px solid white;}
+	p{ text-align: center; }
+	.fromAvatar, .toAvatar{ width: 100px; position: absolute; z-index: 1;}
+	.fromAvatar{ left: 0px; top: 0px; }
+	.toAvatar{ right: 0px; top: 0px;}
+	@media screen and (max-width: 480px) { 
+		.fromAvatar, .toAvatar { margin: auto; }
+	}
+	section .content-body { padding: 20px ! important; border: none;}
+	section.box{margin: 10px 0;}
+	body{ background-color: lightgray;}
+	.content-body, .box{ background-color: white; }
+	#presets a { border-left: solid #666 1px; padding: 0 10px; }
+	#presets a.first { border-left: none; }
+	#keyword { width: 300px; }
+	#fetcher { width: 500px; }
+	#keyword, #go { font-size: 1.5em; }
+	#text { width: 100%; height: 100px; }
+	p.copy { font-size: small; }
+	#form { font-size: small; position: relative; display: none;}
+	hr { border: none; border-bottom: solid #ccc 1px; }
+	a.active { text-decoration: none; color: #000; font-weight: bold; cursor: text; }
+	#angles line, #angles path, #angles circle { stroke: #666; }
+	#angles text { fill: #333; }
+	#angles path.drag { fill: #666; cursor: move; }
+	#angles { text-align: center; margin: 0 auto; width: 350px; }
+	#angles input, #max { width: 42px; }
+	#vis{ width: 100%; padding: 0px;}
+	/*svg{ border: 1px solid #aaa;}*/
+</style>
+
+<body>
+<div class="row avatars container">
+	<div class="fromAvatar">
+		<img src="">
+		<p></p>
+	</div>
+	<div class="row">
+		<div class="col-lg-2"></div>
+	        <section class="box col-lg-8">
+	            <div class="content-body">    
+	                <div class="row">
+	                    <div class="col-lg-5 col-md-6 col-sm-5 col-xs-6">
+	                        <div class="form-group">
+	                            <label class="form-label" style="font-size: 1.5em;">Focus Cloud </label>&nbsp&nbsp&nbsp
+	                            <select style="font-size: 1.3em;">
+	                            	<option>Word</option>
+	                            	<option>ScreenName</option>
+	                            	<option>HashTag</option>
+	                            </select>
+	                        </div>
+	                    </div>
+	                    <!-- <div class="col-lg-1 col-md-1"></div> -->
+
+	                    <div class="col-lg-3 col-md-2 col-sm-3 col-xs-6">
+	                        <button type="button" name="action" value="search" id="submit" class="btn btn-success btn-block">Show</button>
+	                    </div>
+
+	                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+	                        <button type="button" name="action" value="search" id="download" class="btn btn-success btn-block">Download Images</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </section>
+		<div class="col-lg-2"></div>
+	</div>
+	<div class="toAvatar">
+		<img src="">
+		<p></p>
+	</div>
+</div>
+
+<form name="search" id="search" class="container">
+
+    <div class="col-xs-12">
+        <section class="box">
+			<div id="vis"></div>
+        </section>
+    </div>
+</form>
+
+
+<form id="form">
+  <p style="position: absolute; right: 0; top: 0" id="status"></p>
+
+  <div style="text-align: center">
+    <div id="presets"></div>
+    <div id="custom-area">
+      <p><label for="text">Paste your text below!</label>
+      <p><textarea id="text" onchange="changed()">
+      </textarea>
+      <button id="go" type="submit">Go!</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <div style="float: right; text-align: right">
+    <p><label for="max">Number of words:</label> <input type="number" value="250" min="1" id="max">
+    <p><label for="per-line"><input type="checkbox" id="per-line"> One word per line</label>
+    <p><label>Download:</label>
+      <button id="download-svg">SVG</button>
+  </div>
+
+  <div style="float: left">
+    <p><label>Spiral:</label>
+      <label for="archimedean"><input type="radio" name="spiral" id="archimedean" value="archimedean" checked="checked"> Archimedean</label>
+      <label for="rectangular"><input type="radio" name="spiral" id="rectangular" value="rectangular"> Rectangular</label>
+    <p><label for="scale">Scale:</label>
+      <label for="scale-log"><input type="radio" name="scale" id="scale-log" value="log" checked="checked"> log n</label>
+      <label for="scale-sqrt"><input type="radio" name="scale" id="scale-sqrt" value="sqrt"> √n</label>
+      <label for="scale-linear"><input type="radio" name="scale" id="scale-linear" value="linear"> n</label>
+    <p><label for="font">Font:</label> <input type="text" id="font" value="Impact">
+  </div>
+
+  <div id="angles">
+    <p><input type="number" id="angle-count" value="5" min="1"> <label for="angle-count">orientations</label>
+      <label for="angle-from">from</label> <input type="number" id="angle-from" value="-60" min="-90" max="90"> °
+      <label for="angle-to">to</label> <input type="number" id="angle-to" value="60" min="-90" max="90"> °
+  </div>
+  <hr style="clear: both">
+</form>
+</body>
+
+<script src="./assets/js/myD3.min.js"></script>
+<script src="./assets/js/myWordCloud.min.js"></script>
+<script src="./assets/js/Intelligence.js"></script>
+<script type="text/javascript" src="../assets/js/saveSvgAsPng.js"></script>
+
+<script type="text/javascript">
+	var strFromName = getCookie("FromScreenName");
+	var strToName = getCookie("ToScreenName");
+	$(".fromAvatar img").attr("src", "https://twitter.com/"+strFromName+"/profile_image?size=original");
+	$(".fromAvatar p").html(strFromName);
+	$(".toAvatar img").attr("src", "https://twitter.com/"+strToName+"/profile_image?size=original");
+	$(".toAvatar p").html(strToName);
+</script>
+
+<script type="text/javascript">
+
+	var strHashtag = "";
+	var strWord = "";
+	var strScreenName = "";
+	$.ajax({
+		method: 'GET',
+		data: {},
+		url: "http://apps.icaroai.com/icaroai/rest/charting/getFromToWord/" + strFromName + "/" + strToName,
+		dataType: 'json',
+		success: function(data){
+			strWord = makeSentences(data);
+		}
+	});
+	$.ajax({
+		method: 'GET',
+		data: {},
+		url: "http://apps.icaroai.com/icaroai/rest/charting/getFromToScreenName/" + strFromName + "/" + strToName,
+		dataType: 'json',
+		success: function(data){
+			strScreenName = makeSentences(data);
+		}
+	});
+	$.ajax({
+		method: 'GET',
+		data: {},
+		url: "http://apps.icaroai.com/icaroai/rest/charting/getFromToHashtag/" + strFromName + "/" + strToName,
+		dataType: 'json',
+		success: function(data){
+			strHashtag = makeSentences(data);
+		}
+	});
+
+	$("#download").on("click", function(){
+		saveSvgAsPng(document.getElementsByTagName("svg")[0], strFromName + "_" + strToName + "_" + $("select").val() + ".png", {backgroundColor: "white"});
+	});
+	$("#submit").on("click", function(){
+		var strKind = $("select").val();
+		// console.log(strKind);
+		switch( strKind){
+			case 'Word': drawWords(); break;
+			case 'ScreenName': drawScreenName(); break;
+			case 'HashTag': drawHashtag(); break;
+
+		}
+	});
+	function setDimention(){
+		var svgWidth = $("#vis").outerWidth();
+		var svgHeight = window.innerHeight - $("svg").offset().top-20;
+		var nDimention = svgWidth > svgHeight ? svgHeight : svgWidth;
+		var isWide = svgWidth > svgHeight ? true : false;
+		w = nDimention;
+		h = nDimention;
+		if( isWide ){
+			var nPadding = (svgWidth - nDimention) / 2;
+			$("#vis").css("padding-left",nPadding+"px").css("padding-right",nPadding+"px");
+		} else{
+			var nPadding = (svgHeight - nDimention) / 2;
+			$("#vis").css("padding-top",nPadding+"px").css("padding-bottom",nPadding+"px");
+		}
+		$("svg").attr("width", nDimention);
+		$("svg").attr("height", nDimention);
+	}
+    function makeSentences(_data){
+      var strBuf = "";
+      for( var i = 0; i < _data.length; i++){
+        for( var j = 0; j < _data[i].count; j++){
+          strBuf += _data[i].val + " ";
+        }
+      }
+      return strBuf;
+    }
+	function drawWords(){
+		setDimention();
+		parseText(strWord);
+	}
+	function drawScreenName(){
+		setDimention();
+		parseText(strScreenName);
+	}
+	function drawHashtag(){
+		setDimention();
+		parseText(strHashtag);
+	}
+	setDimention();
+	// parseText(" ");
+	// drawWords();
+</script>

@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-xs-12" ba-panel ba-panel-class="with-scroll">
+    <dashboard-top-scroll></dashboard-top-scroll>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-8 col-md-12 col-sm-12" ba-panel ba-panel-class="with-scroll">
+    <div class="admin-chart">
+      <!-- <techan-chart></techan-chart> -->
+      <div ng-include="'app/pages/dashboard/techanChart/techanChart.html'"></div>
+      <div class="row techanZoom" ng-controller="dashboardCtrl" style="display: none;">
+        <div class="button-group" style="color: white;">Zoom: 
+          <button class="btn-default btn_period" ng-class="{ PeriodSelected : timePeriod == '5m'}" ng-click="timePeriodClicked('5m')">5m</button>
+          <button class="btn-default btn_period" ng-class="{ PeriodSelected : timePeriod == '15m'}" ng-click="timePeriodClicked('15m')">15m</button>
+          <button class="btn-default btn_period" ng-class="{ PeriodSelected : timePeriod == '30m'}" ng-click="timePeriodClicked('30m')">30m</button>
+          <button class="btn-default btn_period" ng-class="{ PeriodSelected : timePeriod == '2h'}" ng-click="timePeriodClicked('2h')">2h</button>
+          <button class="btn-default btn_period" ng-class="{ PeriodSelected : timePeriod == '4h'}" ng-click="timePeriodClicked('4h')">4h</button>
+          <button class="btn-default btn_period" ng-class="{ PeriodSelected : timePeriod == '24h'}" ng-click="timePeriodClicked('24h')">24h</button>
+          <!-- <button class="btn-default btn_period" onclick="timePeriodClicked('All')">All</button> -->
+        </div>
+      </div>      
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-12 col-sm-12" ba-panel-blur ba-panel ba-panel-class="with-scroll">
+    <div class="admin-chart">
+      <market-table></market-table>
+    </div>
+  </div>
+</div>
+
+<div class="row bellowContents">
+  <bellow-contents></bellow-contents>
+</div>

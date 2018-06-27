@@ -1,0 +1,46 @@
+
+  <div class="online col-sm-12 col-md-12 col-lg-4 panel-blur" ba-panel ba-panel-class="with-scroll" ng-controller="bellowContentsCtrl">
+    <div class="admin-chart">
+      <p><label>Online Magazines</label></p>
+      <div ba-panel-class="with-scroll" style="height: 450px; overflow: auto;">
+        <table class="onlineMagazineTable">
+          <tr ng-repeat="newsJournal in newsJournals">
+            <td class="Journal">
+              <a href="{{newsJournal.link}}" target="_blank"><h3>{{newsJournal.title}}</h3></a>
+              <div>{{newsJournal.desc}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="reddit col-sm-12 col-md-12 col-lg-4 panel-blur" ba-panel ba-panel-class="with-scroll" ng-controller="bellowContentsCtrl">
+    <div class="admin-chart">
+      <p><img src="./assets/img/reddit.png"></p>
+      <div ba-panel-class="with-scroll" style="height: 450px; overflow: auto;">
+        <table class="redditTable">
+          <tr ng-repeat="reddit in reddits">
+            <td class="Journal">
+              <a href="{{reddit.link}}" target="_blank"><h3>{{reddit.title}}</h3></a>
+              <div>{{reddit.desc}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="twitter col-sm-12 col-md-12 col-lg-4 panel-blur" ba-panel ba-panel-class="with-scroll" ng-controller="bellowContentsCtrl">
+    <div class="admin-chart">
+      <p><img src="./assets/img/twitter.png"></p>
+      <div ba-panel-class="with-scroll" style="height: 450px; overflow: auto;">
+        <table class="twitterTable">
+          <tr ng-repeat="twitter in twitters">
+            <td class="Journal">
+              <a href="{{twitter.link}}" target="_blank"><h3>{{twitter.title}}</h3></a>
+              <div>{{twitter.desc}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>

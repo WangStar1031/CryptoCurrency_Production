@@ -1,0 +1,94 @@
+.customCol{
+  padding: 0px 5px 0px 5px !important;
+}
+
+#main-content{
+    margin-left: 0px !important;
+}
+.main-wrapper{
+    margin-top: 0px ! important;
+}
+section .content-body {
+    padding: 5px ! important;
+}
+
+.waiting {
+  position: absolute;
+}
+
+#ScreenName, #Levels{
+  /*background-color: yellow;*/
+}
+#schedulaStart, #oraStart, #schedulaEnd, #oraEnd {
+  /*background-color: #f97f2b;*/
+  /*color: white;*/
+}
+#schedulaStart::placeholder, #oraStart::placeholder, #schedulaEnd::placeholder, #oraEnd::placeholder {
+  color: #ccc;
+}
+.ShowItem{
+    display: block;
+}
+.HideItem{
+    display: block;
+}
+.ShowOption {
+  box-sizing: border-box;
+  box-shadow: inset 0px 0px 0px 2px #ffe4e4;
+  padding-top: 5px;
+}
+.content-body > div{
+  padding-left : 5px ! important;
+  padding-right : 5px ! important;
+}
+.btn-block {
+    padding: 10px 0px !important;
+}
+path.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.8px;
+}
+path.link:hover, path.hoverLink {
+  fill: none;
+  stroke: #f00;
+  stroke-width: 2.2px;
+}
+
+circle {
+  fill: #ccc;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+.mainCircle{
+  fill: #f00;
+  stroke: #f00;
+  stroke-width: 1.5px;  
+}
+.activeCircle {
+    stroke: #f00;
+}
+text {
+  fill: #000;
+  font: 10px sans-serif;
+  pointer-events: none;
+  z-index: 100;
+}
+.HideItem{
+  display: none;
+}
+.ExtraSearch{
+    position: absolute;
+    right: 45px;
+}
+#LineDetails{
+    position: absolute;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    top: 0px;
+    left: 0px;
+}
+#LineDetails p{
+    margin-bottom: 3px;
+}
