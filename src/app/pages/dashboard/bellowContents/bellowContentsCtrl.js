@@ -9,8 +9,8 @@
       .controller('bellowContentsCtrl', bellowContentsCtrl);
 
   /** @ngInject */
-  function bellowContentsCtrl($scope, baConfig, colorHelper, dashboardService) {
-    $scope.service = dashboardService;
+  function bellowContentsCtrl($scope, baConfig, colorHelper, pagesService) {
+    $scope.service = pagesService;
     $scope.currency_type = 0;
     $scope.newsJournals = [];
     $scope.reddits = [];

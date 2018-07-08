@@ -9,8 +9,8 @@
       .controller('techanChartCtrl', techanChartCtrl);
 
   /** @ngInject */
-  function techanChartCtrl($scope, $element, layoutPaths, baConfig, $interval, dashboardService) {
-    $scope.service = dashboardService;
+  function techanChartCtrl($scope, $element, layoutPaths, baConfig, $interval, pagesService) {
+    $scope.service = pagesService;
     $scope.techanChart = null;
     var layoutColors = baConfig.colors;
     $scope.chartData = [];
@@ -36,8 +36,25 @@
     $scope.refreshChart = function(){
       $scope.drawChart();
     }
-
+    $scope.dateToFormatedString = function(_date){
+      var Year= _date.getFullYear();
+      var mm = _date.getMonth() + 1;
+      var dd = _date.getDate();
+      var hh = _date.getHours();
+      var ii = _date.getMinutes();
+      return Year + '-' + mm + '-' + dd + 'T' + hh + ':' + ii + ':00';
+    }
     $scope.generateChartData = function() {
+      if( $scope.chartData){
+        if( $scope.chartData.length){
+          var startTime = $scope.dateToFormatedString($scope.chartData[0].date);
+          console.log(startTime);
+          var endTime = $scope.dateToFormatedString($scope.chartData[ $scope.chartData.length - 1].date);
+          console.log(endTime);
+          $scope.service.setFromTime( startTime);
+          $scope.service.setToTime( endTime);
+        }
+      }
       return $scope.chartData;
     }
     $scope.predictionShow = function(){
@@ -174,14 +191,62 @@
               creditsPosition: "bottom-right"
             },
         });
-      // } else{
-      //   $scope.techanChart.dataProvider = $scope.generateChartData();
-      //   $scope.techanChart.validateData();
-      // }
-    }
-    $interval(function(){
+        BindingEvent();
+        // $scope.techanChart.periodSelector.addListener("changed", function(e){
+        //   console.log(e.startDate);
+        //   console.log(e.lastDate);
+        // });
+        $scope.techanChart.addListener("init", function(e) {
+
+          // Lock periodSelector and release with an delay to abuse the internal "zoomed" callback
+          function handleInputField(inputEvent) {
+            if (inputEvent.type == "focus") {
+              e.chart.periodSelector.retainLock = true;
+            } else {
+              setTimeout(function() {
+                e.chart.periodSelector.retainLock = false;
+              }, 250);
+            }
+          }
+
+          // Observe zooming to capture the date
+          e.chart.addListener("zoomed", function(e) {
+
+            // Required delay because periodSelector used this event before calling his own
+            setTimeout(function() {
+              e.chart.periodSelector.retainStart = e.startDate;
+            }, 100);
+          });
+
+          // Observe periodSelector updates and apply retained date
+          e.chart.periodSelector.addListener("changed", function(e) {
+            var start = Number(e.chart.periodSelector.retainStart || e.startDate);
+            var diff = Number(e.endDate) - Number(e.startDate);
+            var end = start + diff;
+            console.log(start);
+            console.log(end);
+
+            if (!e.chart.periodSelector.retainLock &&
+            e.chart.periodSelector.retainStart &&
+            e.predefinedPeriod != "MAX" &&
+            e.chart.lastDate > end
+            ) {
+              start = new Date(start);
+              end = new Date(end);
+              e.chart.zoom(start, end);
+            }
+          });
+
+          // Observe periodSelector date fields
+          e.chart.periodSelector.startDateField.addEventListener("focus", handleInputField);
+          e.chart.periodSelector.startDateField.addEventListener("blur", handleInputField);
+          e.chart.periodSelector.endDateField.addEventListener("focus", handleInputField);
+          e.chart.periodSelector.endDateField.addEventListener("blur", handleInputField);
+          });
+      }
+      $interval(function(){
+        $scope.service.getTechanEntry();
+      }, 1000 * 60 * 5);
       $scope.service.getTechanEntry();
-    }, 1000 * 60 * 5);
-    $scope.service.getTechanEntry();
   }
 })();

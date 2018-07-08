@@ -40,41 +40,27 @@
 <!-- </div> -->
 <script type="text/javascript">
 	var interval;
-	$("#fromTime").appendDtpicker({
-		closeOnSelected: true,
-		close: function(dateTime){
-			console.log("onClose");
-		}
-	});
-	$("#toTime").appendDtpicker({closeOnSelected: true});
-	function eventMatching(){
-		$("#fromTime").val($(".amcharts-start-date-input").val());
-		$("#toTime").val($(".amcharts-end-date-input").val());
+	$("#fromTime").appendDtpicker({ closeOnSelected: true});
+	$("#toTime").appendDtpicker({ closeOnSelected: true});
+	function BindingEvent(){
 		$(".amcharts-start-date-input").on('click', function(){
-			console.log('start changed');
 			$("#fromTime").show();
+			$("#fromTime").val($(".amcharts-start-date-input").val());
 		});
 		$(".amcharts-end-date-input").on('click', function(){
-			// console.log('start changed');
 			$("#toTime").show();
+			$("#toTime").val($(".amcharts-end-date-input").val());
 		});
+		// $(".amcharts-start-date-input").on('change', function(){
+		// });
+		// $(".amcharts-end-date-input").on('change', function(){
+		// });
+	}
+	function eventMatching(){
+		// BindingEvent();
 		$("#fromTime").offset({ top: $("#techanChart").height() - 10, left: 52});
 		$("#toTime").offset({ top: $("#techanChart").height() - 10, left: 220});
-		// $("#fromTime").css('display','block');
-		// $("#toTime").css('display','block');
 	}
-	$("#fromTime").on('close', function(){
-		console.log('closed');
-	});
-	$("#fromTime").on('hide', function(){
-		console.log('hide');
-	});
-	$("#fromTime").on('onClose', function(){
-		console.log('onClose');
-	});
-	$("#fromTime").on('onHide', function(){
-		console.log('onHide');
-	});
 	$('#fromTime').change(function() {
 		setTimeout(function(){
 			if( $(".datepicker").eq(0).is(':visible') ){
@@ -83,6 +69,7 @@
 			$(".amcharts-start-date-input").val($("#fromTime").val());
 			$("#fromTime").hide();
 			$(".amcharts-start-date-input").focus();
+			BindingEvent();
 		}, 500);
 	});
 	$('#toTime').change(function() {
@@ -93,11 +80,11 @@
 			$(".amcharts-end-date-input").val($("#toTime").val());
 			$("#toTime").hide();
 			$(".amcharts-end-date-input").focus();
+			BindingEvent();
 		}, 500);
 	});
 
 	interval = setInterval(function(){
-		console.log('interval');
 		var dateinput = $(".amcharts-start-date-input");
 		if( dateinput.length != 0){
 			console.log('deteted.');

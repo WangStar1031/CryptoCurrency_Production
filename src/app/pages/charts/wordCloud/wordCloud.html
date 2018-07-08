@@ -1,16 +1,31 @@
-<style>
+<!--Requirement jQuery-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!--Load Script and Stylesheet -->
+<script type="text/javascript" src="assets/dtp/jquery.simple-dtpicker.js"></script>
+<link type="text/css" href="assets/dtp/jquery.simple-dtpicker.css" rel="stylesheet" />
+<style type="text/css">
+.datepicker_header .icon-home, .datepicker_header .icon-close{
+  width: 32px !important;
+  height: 32px !important;
+}
 #form { font-size: small; position: relative; display: none;}
 select.form-control.selectpicker{ display: block!important;}
+.timePeriod{ color: white;}
+.selectpicker option{
+  color: black;
+}
+.timePeriod input{ color: black; padding: 3px;}
 </style>
 
 <div class="form-group col-lg-3" ng-controller="WordCloudCtrl">
-    <select class="form-control selectpicker" selectpicker title="News Word"
-            ng-model="standardSelected"
-            ng-options="item as item.label for item in standardSelectItems"
-            ng-change="wordKindChanged()">
+    <select class="form-control selectpicker" ng-Model="standardSelected" ng-change="wordKindChanged()">
+      <option ng-repeat="item in standardSelectItems">{{item.label}}</option>
     </select>
 </div>
-<div id="vis" ng-controller="WordCloudCtrl"></div>
+<div class="form-group col-lg-6 timePeriod" ng-controller="WordCloudCtrl">
+  From : <input type="text" id="socialFrom" ng-Model="strFromTime"> To : <input type="text" id="socialTo" ng-Model="strToTime">
+</div>
+<div id="vis" ng-controller="WordCloudCtrl" class="col-lg-12"></div>
 <!-- angular-d3-word-cloud -->
 <form id="form">
   <p id="status"></p>
@@ -55,22 +70,6 @@ select.form-control.selectpicker{ display: block!important;}
 <script src="./assets/js/myD3.min.js"></script>
 <script src="./assets/js/myWordCloud.min.js"></script>
 <script type="text/javascript">
-  // $.ajax({
-  //   method: 'GET',
-  //   data: {},
-  //   url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudNewsWord/2018-01-01T00:00:42/2018-01-10T00:00:42",
-  //   dataType: 'json',
-  //   success: function(data){
-  //     var strBuf = "";
-  //     console.log(data.length);
-  //     for( var i = 0; i < data.length; i++){
-  //       for( var j = 0; j < data[i].count; j++){
-  //         strBuf += data[i].word + " ";
-  //       }
-  //     }
-  //     // console.log(strBuf);
-  //     parseText(strBuf);
-  //   }
-  // });
-  // var isWordTrue = false;
+  $("#socialFrom").appendDtpicker({ closeOnSelected: true});
+  $("#socialTo").appendDtpicker({ closeOnSelected: true});
 </script>

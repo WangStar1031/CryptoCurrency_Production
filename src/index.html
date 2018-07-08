@@ -35,12 +35,7 @@
   .noti-icon{ border-radius: 50%; color: white; background-color: #FF000077; position: relative; top: -40px; left: 15px; width: 15px; text-align: center; height: 15px; line-height: 15px;}
 </style>
 <script type="text/javascript" src="assets/js/cookieManager.js"></script>
-<!-- 
-<script src="assets/jquery/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap/datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 
-<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.en.js" charset="UTF-8"></script> -->
 
 <script type="text/javascript">
   var g_timePeriod = "";
@@ -65,22 +60,19 @@
     var expires = "expires=" + d.toGMTString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
-  // setCookie('cryptoUser', 'icaro', 1);
   if( getCookie('cryptoUser') == '')
     window.location.href = "auth.html";
   var userId = getCookie("cryptoUserId");
   var profileUrl = "http://apps.icaroai.com/icaroai/rest/room/getImage/" + userId;
-  window.setTimeout(function(){
-    console.log("AS");
+  var imgInt = setInterval(function(){
+    if( $("img[src='assets/img/app/profile/Nasta.png']").length == 0){
+      return;
+    }
     $("img[src='assets/img/app/profile/Nasta.png']").attr("src", profileUrl);
-    window.setTimeout(function(){
-      console.log("AS");
-      $("img[src='assets/img/app/profile/Nasta.png']").attr("src", profileUrl);
-    }, 5000);
-  }, 5000);
+    clearInterval(imgInt);
+  }, 500);
   
 </script>
-<!-- <script src="./assets/js/socket.io.js"></script> -->
 <script type="text/javascript">
   var nNotifications = 0;
   var mainChatCtrl = new class{
@@ -96,27 +88,10 @@
           nNotifications ++;
           $(".noti-icon").remove();
           chatIconParent.append("<div class='noti-icon'>"+nNotifications+"</div>");
-          // alert('Someone sent message to you.');
         }
       }
     }
   };
-  // var exe_cc;
-  // var socket = io.connect('http://apps.icaroai.com:3000');
-  // socket.on('chat message', function(msg){
-  //   msgObj = JSON.parse(msg);
-  //   var myName = getCookie('cryptoUser');
-  //   var myId = getCookie('cryptoUserId');
-
-  //   if( msgObj.id == myId || msgObj.activeOtherId == myId){
-  //     setCookie('messagedFromId', msgObj.id, 1);
-  //     setCookie('messagedToId', msgObj.activeOtherId, 1);
-  //     var msg = msgObj.message.split('\n').join('+-00*/');
-  //     setCookie('messagContents', msg, 1);
-  //     setCookie('messagedUser', msgObj.myName, 1);
-  //     mainChatCtrl.setConsoleMessage(msgObj);
-  //   }
-  // });
 </script>
 <body class="blur-theme">
 <div class="body-bg"></div>
@@ -129,26 +104,8 @@
     <div class="al-content">
       <content-top></content-top>
       <div ui-view autoscroll="true" autoscroll-body-top></div>
-<!--       <div style="position: fixed; width: 100%;">
-        <div ng-include="'app/pages/chat/chat.html'"></div>
-      </div> -->
-      
     </div>
   </div>
-
-<!--   Wang 
-  <footer class="al-footer clearfix">
-    <div class="al-footer-right">Created with <i class="ion-heart"></i></div>
-    <div class="al-footer-main clearfix">
-      <div class="al-copy">Blur Admin 2016</div>
-      <ul class="al-share clearfix">
-        <li><i class="socicon socicon-facebook"></i></li>
-        <li><i class="socicon socicon-twitter"></i></li>
-        <li><i class="socicon socicon-google"></i></li>
-        <li><i class="socicon socicon-github"></i></li>
-      </ul>
-    </div>
-  </footer> -->
 
   <back-top></back-top>
 </main>

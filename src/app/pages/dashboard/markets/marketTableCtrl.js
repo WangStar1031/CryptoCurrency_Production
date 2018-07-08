@@ -7,45 +7,33 @@
 
   angular.module('BlurAdmin.pages.dashboard')
       .controller('marketTableCtrl', marketTableCtrl);
-
   /** @ngInject */
-  function marketTableCtrl($scope, baConfig, colorHelper, dashboardService) {
-    $scope.service = dashboardService;
+  function marketTableCtrl($scope, baConfig, colorHelper, pagesService) {
+    $scope.service = pagesService;
     $scope.currency_type = 0;
     $scope.transparent = baConfig.theme.blur;
     var dashboardColors = baConfig.colors.dashboard;
     $scope.strFilter = "";
-    $scope.CurrencyBTC = [];
-    $scope.CurrencyETH = [];
-    $scope.CurrencyXMR = [];
-    $scope.CurrencyUSDT = [];
-    $scope.$watch('service.getBTCData()', function(_newsData){
-      $scope.CurrencyBTC = _newsData;
-    });
-    $scope.$watch('service.getETHData()', function(_newsData){
-      $scope.CurrencyETH = _newsData;
-    });
-    $scope.$watch('service.getXMRData()', function(_newsData){
-      $scope.CurrencyXMR = _newsData;
-    });
-    $scope.$watch('service.getUSDTData()', function(_newsData){
-      $scope.CurrencyUSDT = _newsData;
-    });
-    $scope.onBTCClick = function(btcRecord){
-      $scope.service.setChartDataType("BTC", btcRecord.coin);
-    }
-    $scope.onETHClick = function(ethRecord){
-      $scope.service.setChartDataType("ETH", ethRecord.coin);
-    }
-    $scope.onXMRClick = function(xmrRecord){
-      $scope.service.setChartDataType("XMR", xmrRecord.coin);
-    }
-    $scope.onUSDTClick = function(usdtRecord){
-      $scope.service.setChartDataType("USDT", usdtRecord.coin);
+    $scope.lstCurrencies = [];
+    $scope.currency_type_str = '';
+    $scope.lstCurrencyValues = [];
+    $scope.curCurrencyList = [];
+    $scope.onCryptoClick = function(curRecord){
+      $scope.service.setChartDataType($scope.lstCurrencies[$scope.currency_type], curRecord.coin);
     }
     $scope.setCurrencyType = function(_nType){
       $scope.currency_type = _nType;
+      if( _nType < $scope.lstCurrencies.length){
+        $scope.currency_type_str = $scope.lstCurrencies[_nType];
+      }
       $scope.service.setCurrencyType(_nType);
     }
+    $scope.$watch('service.getCurrencyListData()', function(_newsData){
+      $scope.lstCurrencies = _newsData;
+      $scope.setCurrencyType(0);
+    });
+    $scope.$watch('service.getCurrentCurrency()', function(_newsData){
+      $scope.curCurrencyList = _newsData;
+    });
   }
 })();
