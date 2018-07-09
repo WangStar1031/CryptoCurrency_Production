@@ -27,7 +27,7 @@
           date: new Date(data.date),
           value: data.val * 1,
           value1: data.predict * 1,
-          volume: data.sentiment//(data.sentiment == 0 ? -1 : 1)
+          volume: data.sentiment
         });
       }
       if( $scope.chartData.length == 0) return;
