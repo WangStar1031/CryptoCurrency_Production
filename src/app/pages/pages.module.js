@@ -22,23 +22,28 @@
     $urlRouterProvider.otherwise('/dashboard');
   }
   function pagesService($rootScope){
+    var d = new Date();
+    this.tmOffset = d.getTimezoneOffset();
+    this.local2UTC = function(_date){
+      return new Date(_date - (-this.tmOffset * 60 * 1000));
+    }
+    this.utc2Local = function(_date){
+      return new Date(_date - (this.tmOffset * 60 * 1000));
+    }
+    this.getTimeFormatService = function(_date){
+      var year = _date.getFullYear();
+      var month = _date.getMonth() + 1 > 9 ? _date.getMonth() + 1 : '0' + (_date.getMonth() + 1);
+      var date = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
+      var hh = _date.getHours() > 9 ? _date.getHours() : '0' + _date.getHours();
+      var ii = _date.getMinutes() > 9 ? _date.getMinutes() : '0' + _date.getMinutes();
+      return year + "-" + month + "-" + date + "T" + hh + ':' + ii + ":00";
+    }
     var curTime = new Date();
-    var year = curTime.getFullYear();
-    var month = curTime.getMonth() + 1 > 9 ? curTime.getMonth() + 1 : '0' + (curTime.getMonth() + 1);
-    var date = curTime.getDate() > 9 ? curTime.getDate() : '0' + curTime.getDate();
-    var hh = curTime.getHours() > 9 ? curTime.getHours() : '0' + curTime.getHours();
-    var ii = curTime.getMinutes() > 9 ? curTime.getMinutes() : '0' + curTime.getMinutes();
-    console.log(curTime);
-    var beforeTime = new Date(curTime - 12*60*60*1000);
-    console.log(beforeTime);
-    var byear = beforeTime.getFullYear();
-    var bmonth = beforeTime.getMonth() + 1 > 9 ? beforeTime.getMonth() + 1 : '0' + (beforeTime.getMonth() + 1);
-    var bdate = beforeTime.getDate() > 9 ? beforeTime.getDate() : '0' + beforeTime.getDate();
-    var bhh = beforeTime.getHours() > 9 ? beforeTime.getHours() : '0' + beforeTime.getHours();
-    var bii = beforeTime.getMinutes() > 9 ? beforeTime.getMinutes() : '0' + beforeTime.getMinutes();
+    var beforeTime = new Date(curTime - 12 * 60 * 60 * 1000);
 
-    this.toTime = year + "-" + month + "-" + date + "T" + hh + ':' + ii + ":00";
-    this.fromTime = byear + "-" + bmonth + "-" + bdate + "T" + bhh + ':' + bii + ":00";
+    this.toTime = this.local2UTC(curTime);
+    this.fromTime = this.local2UTC(beforeTime);
+
     this.rootScope = $rootScope;
     this.timeInterval = null;
     this.timePeriod = "12h";
@@ -230,12 +235,12 @@
 
     /////////////////////////
 
-    this.wordKind = 0;
-    this.newWordCloudSentence = "";
-    this.redditWordCloudSentence = "";
-    this.twittsWordCloudSentence = "";
-    this.twittsHashtagCloudSentence = "";
-    this.twittsScreenNameCloudSentence = "";
+    // this.wordKind = 0;
+    // this.newWordCloudSentence = "";
+    // this.redditWordCloudSentence = "";
+    // this.twittsWordCloudSentence = "";
+    // this.twittsHashtagCloudSentence = "";
+    // this.twittsScreenNameCloudSentence = "";
     this.applyDatas = function(){
       $rootScope.$apply();
     }
@@ -251,10 +256,12 @@
     this.getWordCloudData = function(_this){
       if( this.fromTime == "" | this.toTime == "")
         return;
+      var fromTime = this.getTimeFormatService( this.fromTime);
+      var toTime = this.getTimeFormatService(this.toTime);
       $.ajax({
           method: 'GET',
           data: {},
-          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudNewsWord/"+this.fromTime+"/"+this.toTime,
+          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudNewsWord/"+ fromTime+"/"+toTime,
           dataType: 'json',
           success: function(data){
             _this.newWordCloudSentence = _this.makeSentences(data);
@@ -264,7 +271,7 @@
       $.ajax({
           method: 'GET',
           data: {},
-          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudRedditWord/"+this.fromTime+"/"+this.toTime,
+          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudRedditWord/"+fromTime+"/"+toTime,
           dataType: 'json',
           success: function(data){
             _this.redditWordCloudSentence = _this.makeSentences(data);
@@ -274,7 +281,7 @@
       $.ajax({
           method: 'GET',
           data: {},
-          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudTweetsScreenName/"+this.fromTime+"/"+this.toTime,
+          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudTweetsScreenName/"+fromTime+"/"+toTime,
           dataType: 'json',
           success: function(data){
             _this.twittsWordCloudSentence = _this.makeSentences(data);
@@ -284,7 +291,7 @@
       $.ajax({
           method: 'GET',
           data: {},
-          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudTweetsHashtag/"+this.fromTime+"/"+this.toTime,
+          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudTweetsHashtag/"+fromTime+"/"+toTime,
           dataType: 'json',
           success: function(data){
             _this.twittsHashtagCloudSentence = _this.makeSentences(data);
@@ -294,7 +301,7 @@
       $.ajax({
           method: 'GET',
           data: {},
-          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudTweetsWord/"+this.fromTime+"/"+this.toTime,
+          url: "http://apps.icaroai.com/icaroai/rest/charting/getWordCloudTweetsWord/"+fromTime+"/"+toTime,
           dataType: 'json',
           success: function(data){
             _this.twittsScreenNameCloudSentence = _this.makeSentences(data);
@@ -304,7 +311,6 @@
     }
     this.setWordKind = function(_index){
       this.wordKind = _index;
-      console.log( this.wordKind);
     }
     this.getWordData = function(){
       switch(this.wordKind){

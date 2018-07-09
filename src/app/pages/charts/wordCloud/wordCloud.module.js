@@ -6,18 +6,19 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.charts.wordCloud', [])
-      .config(routeConfig)
+      // .config(routeConfig)
       .controller('WordCloudCtrl', WordCloudCtrl);
 
   /** @ngInject */
-  function routeConfig($stateProvider) {
-      $stateProvider
-          .state('charts.wordCloud', {
-              url: '/wordCloud',
-              templateUrl: 'app/pages/charts/wordCloud/wordCloud.html',
-          });
-  }
+  // function routeConfig($stateProvider) {
+  //     $stateProvider
+  //         .state('charts.wordCloud', {
+  //             url: '/wordCloud',
+  //             templateUrl: 'app/pages/charts/wordCloud/wordCloud.html',
+  //         });
+  // }
   function WordCloudCtrl($scope, pagesService){
+    console.log("WordCloudCtrl");
     $scope.service = pagesService;
     $scope.strFromTime = "";
     $scope.strToTime = "";
@@ -43,16 +44,32 @@
         }
       }
     }
+    $scope.onDraw =function(){
+      $scope.service.setFromTime($scope.service.local2UTC(new Date($scope.strFromTime)));
+      $scope.service.setToTime($scope.service.local2UTC( new Date($scope.strToTime)));
+      $scope.service.getWordCloudData($scope.service);
+      // var aaa = $scope.service.getWordData();
+      // console.log(aaa);
+      // parseText(aaa);
+    }
+    $scope.changeTimeFormat = function(_date){
+      var year = _date.getFullYear();
+      var month = _date.getMonth() + 1 > 9 ? _date.getMonth() + 1 : '0' + (_date.getMonth() + 1);
+      var date = _date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate();
+      var hh = _date.getHours() > 9 ? _date.getHours() : '0' + _date.getHours();
+      var ii = _date.getMinutes() > 9 ? _date.getMinutes() : '0' + _date.getMinutes();
+      return year + "-" + month + "-" + date + " " + hh + ':' + ii;
+    }
     $scope.$watch('service.getWordData()', function(_newData){
+      if( _newData == "")return;
       parseText(_newData);
     });
     $scope.$watch('service.getFromTime()', function(_newData){
-      $scope.strFromTime = _newData.replace('T', ' ');
+      $scope.strFromTime = $scope.changeTimeFormat($scope.service.utc2Local(_newData));
     });
     $scope.$watch('service.getToTime()', function(_newData){
-      $scope.strToTime = _newData.replace('T', ' ');
+      $scope.strToTime = $scope.changeTimeFormat($scope.service.utc2Local(_newData));
     });
     pagesService.setWordKind(0);
   }
-
 })();

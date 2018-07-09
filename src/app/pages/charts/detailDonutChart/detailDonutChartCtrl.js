@@ -10,6 +10,7 @@
 
   /** @ngInject */
   function detailDonutChartCtrl($element, layoutPaths, baConfig) {
+    console.log("detailDonutChartCtrl");
     var layoutColors = baConfig.colors;
     var id = $element[0].getAttribute('id');
     var pieChart = AmCharts.makeChart(id, {

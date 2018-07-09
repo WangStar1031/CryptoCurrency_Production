@@ -6,9 +6,9 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.charts', [
+      'BlurAdmin.pages.charts.wordCloud',
       'BlurAdmin.pages.charts.simplePieChart',      
       'BlurAdmin.pages.charts.detailDonutChart',
-      'BlurAdmin.pages.charts.wordCloud'
   ])
       .config(routeConfig);
 

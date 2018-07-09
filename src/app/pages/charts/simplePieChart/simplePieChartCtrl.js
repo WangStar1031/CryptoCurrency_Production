@@ -7,6 +7,7 @@
 
   /** @ngInject */
   function simplePieChartCtrl($scope, baConfig, $interval, simplePieChartService) {
+    console.log("simplePieChartCtrl");
     $scope.service = simplePieChartService;
     var layoutColors = baConfig.colors;
 

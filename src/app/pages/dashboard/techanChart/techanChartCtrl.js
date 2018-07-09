@@ -10,6 +10,7 @@
 
   /** @ngInject */
   function techanChartCtrl($scope, $element, layoutPaths, baConfig, $interval, pagesService) {
+    console.log("techanChartCtrl");
     $scope.service = pagesService;
     $scope.techanChart = null;
     var layoutColors = baConfig.colors;
@@ -36,23 +37,15 @@
     $scope.refreshChart = function(){
       $scope.drawChart();
     }
-    $scope.dateToFormatedString = function(_date){
-      var Year= _date.getFullYear();
-      var mm = _date.getMonth() + 1;
-      var dd = _date.getDate();
-      var hh = _date.getHours();
-      var ii = _date.getMinutes();
-      return Year + '-' + mm + '-' + dd + 'T' + hh + ':' + ii + ':00';
-    }
     $scope.generateChartData = function() {
       if( $scope.chartData){
         if( $scope.chartData.length){
-          var startTime = $scope.dateToFormatedString($scope.chartData[0].date);
-          console.log(startTime);
-          var endTime = $scope.dateToFormatedString($scope.chartData[ $scope.chartData.length - 1].date);
-          console.log(endTime);
-          $scope.service.setFromTime( startTime);
-          $scope.service.setToTime( endTime);
+          $scope.service.setFromTime( $scope.chartData[0].date);
+          $scope.service.setToTime( $scope.chartData[$scope.chartData.length - 1].date);
+          for( var i = 0; i < $scope.chartData.length; i++){
+            var curTime = $scope.chartData[i].date;
+            $scope.chartData[i].date = $scope.service.utc2Local(curTime);
+          }
         }
       }
       return $scope.chartData;

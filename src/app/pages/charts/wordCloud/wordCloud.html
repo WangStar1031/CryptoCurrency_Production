@@ -23,7 +23,8 @@ select.form-control.selectpicker{ display: block!important;}
     </select>
 </div>
 <div class="form-group col-lg-6 timePeriod" ng-controller="WordCloudCtrl">
-  From : <input type="text" id="socialFrom" ng-Model="strFromTime"> To : <input type="text" id="socialTo" ng-Model="strToTime">
+  From : <input type="text" id="socialFrom" ng-Model="strFromTime" ng-change="fromTimeChanged()"> To : <input type="text" id="socialTo" ng-Model="strToTime" ng-change="toTimeChanged()">
+  <button class="btn btn-success" ng-Click="onDraw()">Draw</button>
 </div>
 <div id="vis" ng-controller="WordCloudCtrl" class="col-lg-12"></div>
 <!-- angular-d3-word-cloud -->
