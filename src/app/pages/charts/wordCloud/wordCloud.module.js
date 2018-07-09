@@ -25,8 +25,8 @@
     $scope.standardSelectItems = [
       { label: 'News Word', value: 0 },
       { label: 'Reddit Word', value: 1 },
-      { label: 'Twitts Word', value: 2 },
-      { label: 'Twitts HashTag', value: 3 },
+      { label: 'Tweets Word', value: 2 },
+      { label: 'Tweets HashTag', value: 3 },
       { label: 'Tweets ScreenName', value: 4 },
     ];
     $scope.standardSelected = "News Word";
@@ -62,6 +62,7 @@
     }
     $scope.$watch('service.getWordData()', function(_newData){
       if( _newData == "")return;
+      if( !_newData)return;
       parseText(_newData);
     });
     $scope.$watch('service.getFromTime()', function(_newData){
