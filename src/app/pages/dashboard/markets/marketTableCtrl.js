@@ -18,7 +18,17 @@
     $scope.currency_type_str = '';
     $scope.lstCurrencyValues = [];
     $scope.curCurrencyList = [];
+    $scope.mainCurrency = '';
+    $scope.subCurrency = '';
+    $scope.isActiveCurrency = function(_subCurrency){
+      if( $scope.mainCurrency == $scope.lstCurrencies[$scope.currency_type] && $scope.subCurrency == _subCurrency){
+        return true;
+      }
+      return false;
+    }
     $scope.onCryptoClick = function(curRecord){
+      $scope.mainCurrency = $scope.lstCurrencies[$scope.currency_type];
+      $scope.subCurrency = curRecord.coin;
       $scope.service.setChartDataType($scope.lstCurrencies[$scope.currency_type], curRecord.coin);
     }
     $scope.setCurrencyType = function(_nType){
@@ -34,6 +44,16 @@
     });
     $scope.$watch('service.getCurrentCurrency()', function(_newsData){
       $scope.curCurrencyList = _newsData;
+    });
+    $scope.$watch('service.getMainCurrency()', function(_newsData){
+      console.log('service.getMainCurrency()');
+      console.log(_newsData);
+      $scope.mainCurrency = _newsData;
+    });
+    $scope.$watch('service.getSubCurrency()', function(_newsData){
+      console.log('service.getSubCurrency()');
+      console.log(_newsData);
+      $scope.subCurrency = _newsData;
     });
   }
 })();

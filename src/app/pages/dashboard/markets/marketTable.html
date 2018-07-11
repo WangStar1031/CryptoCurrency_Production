@@ -26,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="curRecord in curCurrencyList | filter:{coin : strFilter}">
+        <tr ng-repeat="curRecord in curCurrencyList | filter:{coin : strFilter}" class="{{isActiveCurrency(curRecord.coin) ? 'activeCurrency' : ''}}">
           <td ng-click="onCryptoClick(curRecord)" style="cursor: pointer;">{{curRecord.coin}}</td>
           <td>{{curRecord.price}}</td>
           <td>{{curRecord.volume}}</td>

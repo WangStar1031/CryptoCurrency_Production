@@ -22,6 +22,32 @@
   height: 475px;
 }
 
+  .amChartsPeriodSelector.amcharts-period-selector-div{
+    color: white;
+  }
+  .amChartsPeriodSelector.amcharts-period-selector-div input{
+    color: black;
+  }
+  .amcharts-start-date-input, .amcharts-end-date-input{
+    /*visibility: hidden;*/
+  }
+  #fromTime, #toTime, #btnApply{
+    /*visibility: hidden;*/
+    display: none;
+    position: absolute;
+    width: 150px;
+    text-align: center;
+  }
+  #btnApply{
+    width: 5em!important;
+  }
+  .datepicker_header .icon-home, .datepicker_header .icon-close{
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .amcharts-chart-div a{
+    display: none!important;
+  }
 .techanCharContainer .techanZoom{
   text-align: center;
   padding: 10px;
@@ -157,10 +183,10 @@
 }
 
 .plusVal{
-  color: #d11 !important;
+  color: #1d1 !important;
 }
 .minusVal{
-  color: #1d1 !important;
+  color: #d11 !important;
 }
 
 .marquee {
@@ -195,4 +221,7 @@
 @-webkit-keyframes marquee {
     0%   { text-indent: 0em }
     100% { text-indent: -105em }
+}
+.activeCurrency{
+  background-color: #ffcbcb!important;
 }

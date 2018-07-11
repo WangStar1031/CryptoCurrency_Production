@@ -9,7 +9,7 @@
       .controller('detailDonutChartCtrl', detailDonutChartCtrl);
 
   /** @ngInject */
-  function detailDonutChartCtrl($element, $scope, layoutPaths, baConfig, pagesService) {
+  function detailDonutChartCtrl($element, $scope, $interval, layoutPaths, baConfig, pagesService) {
     console.log("detailDonutChartCtrl");
     var layoutColors = baConfig.colors;
     var id = $element[0].getAttribute('id');
@@ -77,7 +77,6 @@
       responsive: {
         enabled: true,
         rules: [
-          // at 900px wide, we hide legend
           {
             maxWidth: 900,
             overrides: {
@@ -86,8 +85,6 @@
               }
             }
           },
-
-          // at 200 px we hide value axis labels altogether
           {
             maxWidth: 200,
             overrides: {
@@ -109,6 +106,10 @@
       $scope.topWritersData = _newData;
       $scope.createChart();
     });
+    $interval(function(){
+      $scope.service.getTopWriters($scope.service);
+    }, 1000 * 60 * 5);
+    $scope.service.getTopWriters($scope.service);
   }
 
 })();
