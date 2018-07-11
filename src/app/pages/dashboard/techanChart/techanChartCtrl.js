@@ -33,7 +33,10 @@
       if( $scope.chartData.length == 0) return;
       $scope.drawChart();
     });
-
+    $scope.onApply = function(){
+      $scope.service.setFromTime( $scope.service.local2UTC(new Date($(".amcharts-start-date-input").val())));
+      $scope.service.setToTime( $scope.service.local2UTC(new Date($(".amcharts-end-date-input").val())));
+    }
     $scope.refreshChart = function(){
       $scope.drawChart();
     }
@@ -101,7 +104,6 @@
             }],
 
             panels: [{
-
                 showCategoryAxis: false,
                 title: "Value",
                 percentHeight: 70,
@@ -183,6 +185,9 @@
               usePrefixes: true,
               creditsPosition: "bottom-right"
             },
+            chartCursor: {
+              oneBalloonOnly: true
+            }
         });
         BindingEvent();
         // $scope.techanChart.periodSelector.addListener("changed", function(e){

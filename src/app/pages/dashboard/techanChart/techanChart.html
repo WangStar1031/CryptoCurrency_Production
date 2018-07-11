@@ -13,16 +13,22 @@
 	.amcharts-start-date-input, .amcharts-end-date-input{
 		/*visibility: hidden;*/
 	}
-	#fromTime, #toTime{
+	#fromTime, #toTime, #btnApply{
 		/*visibility: hidden;*/
 		display: none;
 		position: absolute;
 		width: 150px;
 		text-align: center;
 	}
+	#btnApply{
+		width: 5em!important;
+	}
 	.datepicker_header .icon-home, .datepicker_header .icon-close{
 		width: 32px !important;
 		height: 32px !important;
+	}
+	.amcharts-chart-div a{
+		display: none!important;
 	}
 </style>
 <!-- <div class="col-md-12" ba-panel ng-controller="techanChartCtrl"> -->
@@ -30,12 +36,15 @@
 	<div ng-controller="techanChartCtrl">
 		<div id="techanChart" class="admin-chart">
 		</div>
+	</div>
+	<div ng-controller="techanChartCtrl">
 		<!-- <input type="text" name="" id="datetime" /> -->
 		<div style="position: absolute; top: 5px; left: 60px;">
 			<img src="assets/img/app/my-app-logo.png" style="width: 50px;cursor: pointer;" ng-click="predictionShow()">
 		</div>
 		<input type="text" id="fromTime">
 		<input type="text" id="toTime">
+		<input type="submit"  id="btnApply" class="btn-success" value="Apply" ng-click="onApply()" />
 	</div>
 <!-- </div> -->
 <script type="text/javascript">
@@ -56,6 +65,8 @@
 		// BindingEvent();
 		$("#fromTime").offset({ top: $("#techanChart").height() - 10, left: 52});
 		$("#toTime").offset({ top: $("#techanChart").height() - 10, left: 220});
+		$("#btnApply").offset({ top: $("#techanChart").height() - 10, left: 400});
+		$("#btnApply").show();
 	}
 	$('#fromTime').change(function() {
 		setTimeout(function(){

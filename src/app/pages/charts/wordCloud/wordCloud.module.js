@@ -6,17 +6,8 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.charts.wordCloud', [])
-      // .config(routeConfig)
       .controller('WordCloudCtrl', WordCloudCtrl);
 
-  /** @ngInject */
-  // function routeConfig($stateProvider) {
-  //     $stateProvider
-  //         .state('charts.wordCloud', {
-  //             url: '/wordCloud',
-  //             templateUrl: 'app/pages/charts/wordCloud/wordCloud.html',
-  //         });
-  // }
   function WordCloudCtrl($scope, pagesService){
     console.log("WordCloudCtrl");
     $scope.service = pagesService;
@@ -33,12 +24,9 @@
     
     $scope.wordKindChanged = function(){
       var selLabel = $(".selectpicker").val();
-      console.log($scope.strFromTime);
-      console.log($scope.strToTime);
       for( var i = 0; i < $scope.standardSelectItems.length; i++){
         var cur = $scope.standardSelectItems[i];
         if( cur.label == selLabel){
-          console.log(selLabel);
           pagesService.setWordKind(cur.value);
           break;
         }
@@ -48,9 +36,6 @@
       $scope.service.setFromTime($scope.service.local2UTC(new Date($scope.strFromTime)));
       $scope.service.setToTime($scope.service.local2UTC( new Date($scope.strToTime)));
       $scope.service.getWordCloudData($scope.service);
-      // var aaa = $scope.service.getWordData();
-      // console.log(aaa);
-      // parseText(aaa);
     }
     $scope.changeTimeFormat = function(_date){
       var year = _date.getFullYear();
