@@ -9,11 +9,18 @@
       .controller('detailDonutChartCtrl', detailDonutChartCtrl);
 
   /** @ngInject */
-  function detailDonutChartCtrl($element, layoutPaths, baConfig) {
+  function detailDonutChartCtrl($element, $scope, layoutPaths, baConfig, pagesService) {
     console.log("detailDonutChartCtrl");
     var layoutColors = baConfig.colors;
     var id = $element[0].getAttribute('id');
-    var pieChart = AmCharts.makeChart(id, {
+    $scope.service = pagesService;
+    $scope.pieChart = null;
+    $scope.topWritersData = [];
+    $scope.dataProvider = function(){
+      return $scope.topWritersData;
+    }
+    $scope.createChart = function(){
+     $scope.pieChart= AmCharts.makeChart(id, {
       type: 'pie',
       startDuration: 0,
       theme: 'blur',
@@ -51,9 +58,9 @@
           }
         ]
       },
-      dataProvider: dataProvider(),
-      valueField: 'litres',
-      titleField: 'country',
+      dataProvider: $scope.dataProvider(),
+      valueField: 'numtweet',
+      titleField: 'screenname',
       export: {
         enabled: true
       },
@@ -96,99 +103,12 @@
         ]
       }
     });
-
-    pieChart.addListener('init', handleInit);
-
-    pieChart.addListener('rollOverSlice', function (e) {
-      handleRollOver(e);
+   }
+    $scope.createChart();
+    $scope.$watch('service.getTopWritersData()', function(_newData){
+      $scope.topWritersData = _newData;
+      $scope.createChart();
     });
-
-    function handleInit() {
-      pieChart.legend.addListener('rollOverItem', handleRollOver);
-    }
-
-    function handleRollOver(e) {
-      var wedge = e.dataItem.wedge.node;
-      wedge.parentNode.appendChild(wedge);
-    }
-    var isEven = false;
-    function dataProvider(){
-      var retVal = [];
-      isEven = !isEven;
-      if( isEven){
-        retVal = [
-          {
-            country: 'Lithuania',
-            litres: 501.9
-          },
-          {
-            country: 'Czech Republic',
-            litres: 301.9
-          },
-          {
-            country: 'Ireland',
-            litres: 201.1
-          },
-          {
-            country: 'Germany',
-            litres: 165.8
-          },
-          {
-            country: 'Australia',
-            litres: 139.9
-          },
-          {
-            country: 'Austria',
-            litres: 128.3
-          },
-          {
-            country: 'UK',
-            litres: 99
-          },
-          {
-            country: 'Belgium',
-            litres: 60
-          }
-        ];
-      } else{
-        retVal = [
-          {
-            country: 'Latvia',
-            litres: 301.9
-          },
-          {
-            country: 'Italy',
-            litres: 601.9
-          },
-          {
-            country: 'UK',
-            litres: 401.1
-          },
-          {
-            country: 'China',
-            litres: 105.8
-          },
-          {
-            country: 'Cambodia',
-            litres: 739.9
-          },
-          {
-            country: 'Japan',
-            litres: 28.3
-          },
-          {
-            country: 'HongKong',
-            litres: 90
-          },
-          {
-            country: 'Russia',
-            litres: 30
-          }
-        ];
-      }
-      return retVal;
-    }
-
   }
 
 })();

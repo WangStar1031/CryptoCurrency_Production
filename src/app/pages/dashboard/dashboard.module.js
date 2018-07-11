@@ -23,7 +23,7 @@
           },
         });
   }
-  function dashboardCtrl($scope, pagesService){
+  function dashboardCtrl($scope, $interval, pagesService){
     $scope.timePeriod = "5m";
     $scope.service = pagesService;
     $scope.timePeriodClicked = function(strPeriod){
@@ -31,6 +31,10 @@
       $scope.service.setTimeInterval($scope.timePeriod);
     }
     pagesService.setTimeInterval($scope.timePeriod);
+    $interval(function(){
+      $scope.service.getServices();
+    }, 1000 * 60 * 5);
+    $scope.service.getServices();
   }
 
 })();

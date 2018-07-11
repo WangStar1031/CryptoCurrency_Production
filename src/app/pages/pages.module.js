@@ -58,11 +58,13 @@
     this.mainCurrencyType = 0;
     this.setFromTime = function(_fromTime){
       this.fromTime = _fromTime;
-      this.getWordCloudData(this)
+      this.getWordCloudData(this);
+      this.getTopWriters(this);
     }
     this.setToTime = function(_toTime){
       this.toTime = _toTime;
-      this.getWordCloudData(this)
+      this.getWordCloudData(this);
+      this.getTopWriters(this);
     }
     this.getTimeInterval = function(_timeInterval){
       var nInterval = this.timePeriod.substring(0, this.timePeriod.length - 1);
@@ -309,6 +311,25 @@
           }
       });
     }
+    this.getTopWriters = function(_this){
+      if( this.fromTime == "" | this.toTime == "")
+        return;
+      var fromTime = this.getTimeFormatService( this.fromTime);
+      var toTime = this.getTimeFormatService(this.toTime);
+      $.ajax({
+          method: 'GET',
+          data: {},
+          url: "http://apps.icaroai.com/icaroai/rest/charting/getTopWriters/"+ fromTime+"/"+toTime,
+          dataType: 'json',
+          success: function(data){
+            _this.topWritersData = data;
+            $rootScope.$apply();
+          }
+      });
+    }
+    this.getTopWritersData = function(){
+      return this.topWritersData;
+    }
     this.setWordKind = function(_index){
       this.wordKind = _index;
     }
@@ -323,6 +344,7 @@
       return this.newWordCloudSentence;
     }
     this.getWordCloudData(this);
+    this.getTopWriters(this);
     this.getFromTime = function(){
       return this.fromTime;
     }
