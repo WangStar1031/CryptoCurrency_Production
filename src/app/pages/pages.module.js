@@ -124,8 +124,10 @@
         url: "http://apps.icaroai.com/icaroai/rest/charting/getCurrencyList",
         dataType: 'json',
         success: function(data){
-          _this.mainType = data[0];
-          _this.subType = data[1];
+          if( _this.mainType == "")
+            _this.mainType = data[0];
+          if( _this.subType == "")
+            _this.subType = data[1];
           _this.lstCurrencies = data;
           _this.getCryptoCurrencies(_this);
           _this.applyDatas();
@@ -231,6 +233,7 @@
       return this.techanChartData;
     }
     this.setChartDataType = function(_mainType, _subType){
+      console.log("setChartDataType");
       this.mainType = _mainType;
       this.subType = _subType;
       this.getTechanChartData(this);
