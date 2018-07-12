@@ -1,7 +1,10 @@
 
   <div class="online col-sm-12 col-md-12 col-lg-4 panel-blur" ba-panel ba-panel-class="with-scroll" ng-controller="bellowContentsCtrl">
     <div class="admin-chart">
-      <p><label>Online Magazines</label></p>
+      <p class="magazinePan">
+        <label>Online Magazines</label><br/>
+        <label class="echo">Powered by NewsAPI.org</label>
+      </p>
       <div ba-panel-class="with-scroll" style="height: 450px; overflow: auto;">
         <table class="onlineMagazineTable">
           <tr ng-repeat="newsJournal in newsJournals">
