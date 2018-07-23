@@ -40,14 +40,14 @@
       return year + "-" + month + "-" + date + "T" + hh + ':' + ii + ":00";
     }
     var curTime = new Date();
-    var beforeTime = new Date(curTime - 12 * 60 * 60 * 1000);
+    var beforeTime = new Date(curTime - 48 * 60 * 60 * 1000);
 
     this.toTime = this.local2UTC(curTime);
     this.fromTime = this.local2UTC(beforeTime);
 
     this.rootScope = $rootScope;
     this.timeInterval = null;
-    this.timePeriod = "12h";
+    this.timePeriod = "48h";
     this.newsJournal = [];
     this.reddit = [];
     this.twitter = [];
@@ -215,7 +215,7 @@
       $.ajax({
           method: 'GET',
           data: {},
-          url: "http://apps.icaroai.com/icaroai/rest/charting/chart/"+_this.mainType+"/"+_this.subType+"/12h",
+          url: "http://apps.icaroai.com/icaroai/rest/charting/chart/"+_this.mainType+"/"+_this.subType+"/48h",
           dataType: 'json',
           success: function(data){
             _this.techanChartData = data;
