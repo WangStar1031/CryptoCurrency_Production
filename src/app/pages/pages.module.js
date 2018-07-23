@@ -9,6 +9,7 @@
     'ui.router',
 
     'BlurAdmin.pages.dashboard',
+    'BlurAdmin.pages.news',
     'BlurAdmin.pages.charts',
     'ui.select',
     'ngSanitize',

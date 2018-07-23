@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.dashboard')
+  angular.module('BlurAdmin.pages.news')
       .directive('bellowContents', bellowContents);
 
   /** @ngInject */
@@ -13,7 +13,7 @@
     return {
       restrict: 'E',
       controller: 'bellowContentsCtrl',
-      templateUrl: 'app/pages/dashboard/bellowContents/bellowContents.html'
+      templateUrl: 'app/pages/news/bellowContents/bellowContents.html'
     };
   }
 })();
