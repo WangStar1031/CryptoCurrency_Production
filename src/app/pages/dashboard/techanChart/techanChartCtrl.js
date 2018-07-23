@@ -161,20 +161,24 @@
               inputFieldWidth: 150,
               periods: [{
                 period: "hh",
-                count: 1,
-                label: "1 hour"
+                count: 4,
+                label: "4H"
               }, {
                 period: "hh",
-                count: 2,
-                label: "2 hours"
-              }, {
-                period: "hh",
-                count: 5,
-                label: "5 hour"
+                count: 8,
+                label: "8H"
               }, {
                 period: "hh",
                 count: 12,
-                label: "12 hours"
+                label: "12H"
+              }, {
+                period: "hh",
+                count: 24,
+                label: "24H"
+              }, {
+                period: "hh",
+                count: 48,
+                label: "48H"
               }, {
                 period: "MAX",
                 label: "MAX"
